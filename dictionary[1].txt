@@ -1,0 +1,44 @@
+Shelter_location
+    location_id – Integer, primary key. Unique ID for each shelter location
+    name – Text. Name of the shelter
+    address – Text. Physical address of the shelter
+    capacity – Integer. Maximum number of animals the shelter can hold
+
+Staff
+    staff_id – Integer, primary key. Unique ID for each staff member
+    name – Text. Full name of the staff member
+    role – Text. Role or job title (Manager, Veterinarian, Staff)
+    location_id – Integer, foreign key. References Shelter_location.location_id. Indicates the shelter where the staff member works
+
+Adopter
+    adopter_id – Integer, primary key. Unique ID for each adopter
+    name – Text. Full name of the adopter
+    phone_number – Text. Contact phone number
+    email – Text. Contact email address
+    address – Text. Home address of the adopter
+
+Animal
+    animal_id – Integer, primary key. Unique ID for each animal
+    name – Text. Name of the animal
+    species – Text. Animal species (Dog, Cat)
+    breed – Text. Breed of the animal
+    age – Integer. Age of the animal in years
+    status – Text. Adoption status (Available, Adopted, Pending)
+    intake_date – Date. Date when the animal was taken into the shelter
+    location_id – Integer, foreign key. References Shelter_location.location_id. Indicates where the animal is currently located
+
+Application
+    application_id – Integer, primary key. Unique ID for each adoption application
+    animal_id – Integer, foreign key. References Animal.animal_id. The animal being applied for
+    adopter_id – Integer, foreign key. References Adopter.adopter_id. The person applying to adopt
+    staff_id – Integer, foreign key. References Staff.staff_id. Staff member who processed the application
+    application_date – Date. When the application was submitted
+    status – Text. Status of the application (Approved, Pending)
+
+Vet_check
+    vet_check_id – Integer, primary key. Unique ID for each veterinary check
+    animal_id – Integer, foreign key. References Animal.animal_id. The animal examined
+    staff_id – Integer, foreign key. References Staff.staff_id. Veterinarian or staff member who performed the check
+    check_date – Date. Date of the veterinary check
+    check_type – Text. Type of check (Vaccination, Check-up, Dental check, etc.)
+    notes – Text. Additional notes about the check
